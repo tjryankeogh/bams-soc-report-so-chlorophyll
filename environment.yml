@@ -1,0 +1,16 @@
+name: soc-chlorophyll
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11
+  - numpy
+  - pandas>=2.2   # resample("ME")
+  - xarray
+  - dask
+  - netcdf4
+  - scipy         # interpolate_na
+  - matplotlib
+  - cartopy
+  - shapely
+  - tqdm
+  - jupyterlab

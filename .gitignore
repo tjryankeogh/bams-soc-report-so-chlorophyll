@@ -1,0 +1,11 @@
+# data are too large for the repository
+DATA/
+*.nc
+
+# figures are written to ../FIGURES
+FIGURES/
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
