@@ -16,11 +16,12 @@ The data are too large to include here. The notebook downloads them, and re-runn
 
 ```
 DATA/
-  8day/      downloaded 8-day composites (30–65°S)
-  annual/    one file per July–June season, gap-filled and smoothed
-  monthly/   monthly means of each season
-  output/    climatologies and standard errors
-  fronts/    saf.txt, saccf.txt (Orsi et al., 1995)
+  8day/           raw 8-day composites, 30–65°S (~0.65 GB per year). The permanent
+                  record: everything else is rebuilt from these.
+  seasonal_mean/  one small file per July–June season (seasonal mean)
+  monthly/        one small file per season (calendar-month means)
+  output/         climatologies and standard errors
+  fronts/         saf.txt, saccf.txt (Orsi et al., 1995)
 FIGURES/
 bams-soc-report-so-chlorophyll/   <- this repo
 ```
@@ -46,6 +47,15 @@ Orsi, A. H., Whitworth III, T., & Nowlin Jr, W. D. (1995). On the meridional ext
 - **Sector means** are area-weighted. Missing (cloud or ice) pixels are excluded rather than set to zero.
 - **Error bars** are the interannual standard deviation of each calendar month at each pixel over the climatology, divided by √(N−1), then area-averaged over the sector. This is the same method as the heat-flux analysis.
 - **Map:** annual-mean anomaly, averaged to 0.25° (`map_coarsen = 6`) before contouring. Set `map_coarsen = 1` to contour the full 4 km field.
+
+## Updating for a new year
+
+1. In GitHub Desktop, tag the current commit with last year's report (e.g. `soc-2025`) so its figures stay reproducible.
+2. Set `anomyear` in the notebook's settings cell (e.g. `2026` = July 2025–June 2026).
+3. *Run All*. Only new composites are downloaded and only new seasons are processed. The climatology is reused. If the season isn't complete on OC-CCI yet, the notebook stops with a message saying how many composites are available.
+4. Commit and push.
+
+To rebuild everything (for example after changing the pre-processing, or for a new OC-CCI version), delete `seasonal_mean/`, `monthly/` and `output/` and set `rebuild_climatology = True`. Keep the climatology and the report year on the same OC-CCI version.
 
 ## Environment
 
